@@ -6,6 +6,8 @@ import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import "katex/dist/katex.min.css";
+import { Button } from "./ui/button";
+import { Copy } from "lucide-react";
 
 const sampleMarkdown = `
 # Hello World
@@ -29,11 +31,24 @@ interface CodeBlockProps extends React.DetailedHTMLProps<React.HTMLAttributes<HT
   children?: React.ReactNode;
 }
 
+const copyToClipboard = (code: string) => {
+  navigator.clipboard.writeText(code);
+  alert("Copyed!");
+};
+
 const CodeBlock = ({ children, className }: CodeBlockProps) => {
   const languageMatch = /language-(\w+)/.exec(className || "");
   const language = languageMatch ? languageMatch[1] : undefined;
-  const formattedChildren = String(children).replace(/\n$/, ""); // Removes trailing newline
-  return <SyntaxHighlighter style={a11yDark} language={language} PreTag="div" children={formattedChildren} />;
+  const formattedChildren = String(children).replace(/\n$/, "");
+
+  return (
+    <div style={{ position: "relative" }}>
+      <SyntaxHighlighter style={a11yDark} language={language} PreTag="div" children={formattedChildren} />
+      <Button className="absolute right-1 top-1 rounded-lg h-6 w-6" variant="outline" size="icon" onClick={() => copyToClipboard(formattedChildren)}>
+        <Copy className="h-4 w-4" />
+      </Button>
+    </div>
+  );
 };
 
 export const MainContents = () => {
