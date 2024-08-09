@@ -1,4 +1,3 @@
-import { ThemeToggle } from "@/components/theme-toggle";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -6,8 +5,10 @@ import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import "katex/dist/katex.min.css";
-import { Button } from "@/components/ui/button";
 import { Copy } from "lucide-react";
+
+import { ThemeToggle } from "@/components/theme-toggle";
+import { Button } from "@/components/ui/button";
 
 const sampleMarkdown = `
 # Hello World
