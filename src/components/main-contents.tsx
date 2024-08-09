@@ -6,7 +6,7 @@ import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import "katex/dist/katex.min.css";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import { Copy } from "lucide-react";
 
 const sampleMarkdown = `
